@@ -1,0 +1,341 @@
+{
+  "Branch": {
+	"fields": {
+	  "branch": true
+	},
+	"fields_meta": {
+	  "branch": 1
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 2157.70190429688,
+		"y": 300.639373779297
+	  },
+	  "size": {
+		"x": 249.042358398438,
+		"y": 284.0
+	  }
+	},
+	"outputs": [
+	  "Content4",
+	  "Content5",
+	  "Content3"
+	]
+  },
+  "Content": {
+	"fields": {
+	  "content": "This is some content, that leads to content"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 1545.98449707031,
+		"y": 287.768585205078
+	  },
+	  "size": {
+		"x": 281.173645019531,
+		"y": 287.0
+	  }
+	},
+	"outputs": [
+	  "Content2"
+	]
+  },
+  "Content10": {
+	"fields": {
+	  "content": "Ending time"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 3187.04174804688,
+		"y": 750.171630859375
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 234.0
+	  }
+	},
+	"outputs": [
+	  "End"
+	]
+  },
+  "Content2": {
+	"fields": {
+	  "content": "And some more content, that leads to a branch"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 1861.25122070312,
+		"y": 292.404663085938
+	  },
+	  "size": {
+		"x": 264.704223632812,
+		"y": 287.0
+	  }
+	},
+	"outputs": [
+	  "Branch"
+	]
+  },
+  "Content3": {
+	"fields": {
+	  "condition": "if var1 > 0 then return(true) else return(false) end",
+	  "content": "This is a conditional choice"
+	},
+	"fields_meta": {
+	  "condition": 4,
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 2500.591796875,
+		"y": 660.986572265625
+	  },
+	  "size": {
+		"x": 286.320434570312,
+		"y": 394.0
+	  }
+	},
+	"outputs": [
+	  "Content10"
+	]
+  },
+  "Content4": {
+	"fields": {
+	  "content": "This is a regular choice"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 2490.49462890625,
+		"y": 38.7263488769531
+	  },
+	  "size": {
+		"x": 307.9365234375,
+		"y": 257.941284179688
+	  }
+	},
+	"outputs": [
+	  "Content7"
+	]
+  },
+  "Content5": {
+	"fields": {
+	  "content": "This is another regular choice, and sets a variable"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 2500.37280273438,
+		"y": 366.667236328125
+	  },
+	  "size": {
+		"x": 330.423583984375,
+		"y": 260.0
+	  }
+	},
+	"outputs": [
+	  "Lua"
+	]
+  },
+  "Content6": {
+	"fields": {
+	  "content": "This content flows back into the dialogue tree"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 3167.4521484375,
+		"y": 387.766082763672
+	  },
+	  "size": {
+		"x": 320.833251953125,
+		"y": 260.0
+	  }
+	},
+	"outputs": [
+	  "Branch"
+	]
+  },
+  "Content7": {
+	"fields": {
+	  "content": "This content flows based on the value of var1"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 2839.96801757812,
+		"y": 19.0349769592285
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 314.0
+	  }
+	},
+	"outputs": [
+	  "Lua2"
+	]
+  },
+  "Content8": {
+	"fields": {
+	  "content": "Back to the branch (var1 == 0)"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 3439.5078125,
+		"y": -174.519470214844
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 287.0
+	  }
+	},
+	"outputs": [
+	  "Branch"
+	]
+  },
+  "Content9": {
+	"fields": {
+	  "content": "var1 == 1, end branch"
+	},
+	"fields_meta": {
+	  "content": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 3451.61962890625,
+		"y": 113.952331542969
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 260.0
+	  }
+	},
+	"outputs": [
+	  "End"
+	]
+  },
+  "End": {
+	"fields": {
+	  "end": 0
+	},
+	"fields_meta": {
+	  "end": 2
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 3818.78002929688,
+		"y": 408.830932617188
+	  },
+	  "size": {
+		"x": 238.228515625,
+		"y": 234.0
+	  }
+	},
+	"outputs": []
+  },
+  "Lua": {
+	"fields": {
+	  "lua": "var1 = 1"
+	},
+	"fields_meta": {
+	  "lua": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 2867.68408203125,
+		"y": 382.833953857422
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 315.0
+	  }
+	},
+	"outputs": [
+	  "Content6"
+	]
+  },
+  "Lua2": {
+	"fields": {
+	  "lua": "return(var1)"
+	},
+	"fields_meta": {
+	  "lua": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 3120.79370117188,
+		"y": 33.6232757568359
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 259.0
+	  }
+	},
+	"outputs": [
+	  "Content8",
+	  "Content9"
+	]
+  },
+  "Lua3": {
+	"fields": {
+	  "lua": "var1 = 0"
+	},
+	"fields_meta": {
+	  "lua": 4
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 1240.51879882812,
+		"y": 273.586669921875
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 315.0
+	  }
+	},
+	"outputs": [
+	  "Content"
+	]
+  },
+  "START": {
+	"fields": {
+	  "label": 0
+	},
+	"fields_meta": {
+	  "label": 2
+	},
+	"graph_data": {
+	  "position_offset": {
+		"x": 968.579040527344,
+		"y": 288.786285400391
+	  },
+	  "size": {
+		"x": 240.0,
+		"y": 237.0
+	  }
+	},
+	"outputs": [
+	  "Lua3"
+	]
+  }
+}
