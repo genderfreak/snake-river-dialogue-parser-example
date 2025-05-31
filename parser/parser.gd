@@ -3,7 +3,7 @@ extends RefCounted
 class_name DialogueParser
 
 var current_node_key: StringName
-var current_node: Dictionary
+var current_node: DialogueNode
 
 var dialogue: Dictionary
 
@@ -13,48 +13,42 @@ func _init(_dialogue: Dictionary, start_node_key: StringName):
 	assert(_dialogue.has(start_node_key), "Dialogue %s does not contain any node with key %s" % [dialogue, start_node_key])
 	dialogue = _dialogue
 	current_node_key = start_node_key
-	current_node = dialogue[start_node_key]
+	current_node = DialogueNode.new(dialogue[start_node_key])
 
 ## Follow output path to next node, by default go to first output. Return new node or current node if failed
-func next(index: int = 0) -> Dictionary:
-	if index <= len(current_node["outputs"]) - 1:
-		goto(current_node["outputs"][index])
+func next(index: int = 0) -> DialogueNode:
+	if index <= len(current_node.get_outputs()) - 1:
+		goto(current_node.get_outputs()[index])
 	else: push_warning("Invalid index %s in node with key %s" % [index, current_node_key])
 	return(get_current())
 
 ## Set the current node by key
 func goto(node_key: StringName):
 	current_node_key = node_key
-	current_node = dialogue[node_key]
-	if current_node["outputs"].is_empty(): end_reached.emit()
+	current_node = DialogueNode.new(dialogue[node_key])
+	if current_node.get_outputs().is_empty(): end_reached.emit()
 
-# Everything after this should be available to all nodes in the dictionary.
-# Get node should return a node object with the methods below this.
-# These methods should still exist within the base class, and forward to the child
-# methods
-
-## Returns the current dialogue node's dictionary (including fields, fields_meta, and outputs, among others)
-func get_current() -> Dictionary:
+## Returns the current dialogue node object
+func get_current() -> DialogueNode:
 	return current_node
 
-# Returns the current dialogue node's fields dict
+# These methods forward to the current node's method
+
+## Returns the current dialogue node's fields dict
 func get_fields() -> Dictionary:
-	return current_node["fields"]
+	return current_node.get_fields()
 
-# Returns the current dialogue node's outputs array
+## Returns the current dialogue node's outputs array
 func get_outputs() -> Array:
-	return current_node["outputs"]
+	return current_node.get_outputs()
 
-# Returns the field specified or false if it doesn't exist
+## Returns the field specified or false if it doesn't exist
 func get_field(field: StringName):
-	if current_node["fields"].has(field):
-		return current_node["fields"][field]
-	else: 
-		return false
+	return current_node.get_field(field)
 
 ## Returns a node from the dialogue dictionary (equivalent to parser.dict[key]), or
-## returns an empty dict
+## returns null
 func get_node(key: StringName):
 	if dialogue.has(key):
-		return dialogue[key]
-	else: return {}
+		return DialogueNode.new(dialogue[key])
+	else: return null

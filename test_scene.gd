@@ -25,16 +25,21 @@ func _ready():
 
 func next():
 	if on_branch or end_reached: return
+	# same as if dialogue_parser.current_node.get_field
 	if dialogue_parser.get_field("branch"):
 		for child in button_box.get_children():
 			child.queue_free()
 		var index: int = 0 # goes up to track choice index
 		var count: int = 0 # goes up if choice has content
-		for i in dialogue_parser.get_outputs():
-			var node = dialogue_parser.get_node(i)
-			if node["fields"].has("content"):
+		for key in dialogue_parser.get_outputs():
+			var node = dialogue_parser.get_node(key)
+			var show_choice = true
+			if node.get_field("condition"):
+				show_choice = false
+				show_choice = lua.do_string(node.get_field("condition"))
+			if show_choice and node.get_field("content"):
 				var new_button = Button.new()
-				new_button.text = node["fields"]["content"]
+				new_button.text = node.get_field("content")
 				new_button.pressed.connect(choose_choice.bind(index))
 				button_box.add_child(new_button)
 				count += 1
@@ -55,7 +60,7 @@ func next():
 		next()
 		return
 	# if next node has no content (branch), skip through to branch
-	if dialogue_parser.get_node(dialogue_parser.get_outputs()[0])["fields"].has("branch"):
+	if dialogue_parser.get_node(dialogue_parser.get_outputs()[0]).get_fields().has("branch"):
 		next()
 		return
 
