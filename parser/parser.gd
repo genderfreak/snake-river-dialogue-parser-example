@@ -2,11 +2,19 @@ extends RefCounted
 
 class_name DialogueParser
 
+## Dialogue parser for json files generated with Snake River Dialogue Editor.
+## Create a new one with .new, providing a dialogue dict (load w/ [JSON]) and a start key.
+## In December schema these should all be START.
+
+## The current node's key.
 var current_node_key: StringName
+## A [DialogueNode] object representing the current node.
 var current_node: DialogueNode
 
+## The dictionary of dialogue nodes. You generally shouldn't need to access this directly.
 var dialogue: Dictionary
 
+## Emitted when the dialogue reaches an end point (no outputs).
 signal end_reached
 
 func _init(_dialogue: Dictionary, start_node_key: StringName):
@@ -15,20 +23,20 @@ func _init(_dialogue: Dictionary, start_node_key: StringName):
 	current_node_key = start_node_key
 	current_node = DialogueNode.new(dialogue[start_node_key])
 
-## Follow output path to next node, by default go to first output. Return new node or current node if failed
+## Follow output path to next node, by default go to first output. Return new node or current node if failed.
 func next(index: int = 0) -> DialogueNode:
 	if index <= len(current_node.get_outputs()) - 1:
 		goto(current_node.get_outputs()[index])
 	else: push_warning("Invalid index %s in node with key %s" % [index, current_node_key])
 	return(get_current())
 
-## Set the current node by key
+## Set the current node by key.
 func goto(node_key: StringName):
 	current_node_key = node_key
 	current_node = DialogueNode.new(dialogue[node_key])
 	if current_node.get_outputs().is_empty(): end_reached.emit()
 
-## Returns the current dialogue node object
+## Returns the current [DialogueNode] object.
 func get_current() -> DialogueNode:
 	return current_node
 
